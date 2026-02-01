@@ -1,19 +1,27 @@
-# PhysicalAI
+# PhysicalAI Project
 
-For this hackathon, we explored multiple ideas, some of which were discarded as we encountered different challenges during the event. We ultimately decided to focus on a simple but direct approach. After reviewing the relevant papers and implementations, we found that the ACT approach was well suited to the small amount of data provided.
+## Approach
+During this hackathon, we iterated through several architectural ideas, discarding approaches that were ill-suited for the time constraints. We ultimately selected **Action Chunking with Transformers (ACT)** due to its proven data efficiency and ability to generalize from a limited number of demonstrations.
 
-For our solution, we designed a simple set of experiments, as shown in the following images. Our initial goal was to generate 50 samples; however, calibration issues and problems with the solo-cli tool arose, which affected this process.
+## Data Collection & Challenges
+Our initial experimental design aimed for a baseline of 50 teleoperated demonstrations. However, we encountered hardware calibration drifts and latency issues with the `solo-cli` tool.
 
-![Demo image](images/image-1.jpeg)
+As a result, we successfully captured a high-quality (but small) dataset of **20 episodes**. While this is slightly below the recommended threshold for standard ACT convergence, it pushed us to innovate on data augmentation.
 
-We made multiple attempts to gather data and were able to create a small dataset of 20 samples, which is slightly below the amount recommended by the ACT algorithm to achieve optimal results.
+![Setup Configuration](images/image-1.jpeg)
 
-While generating the data, we realized that recording new samples was a time-consuming process, so we explored ways to generate additional data more efficiently. For this purpose, we experimented with multiple approaches:
+## Synthetic Data & Augmentation
+To overcome the data scarcity, we engineered a synthetic data pipeline:
+1. **Frame-Level Augmentation:** We randomly sampled frames from existing episodes and applied stochastic noise and domain randomization techniques to increase visual diversity.
+2. **Generative Video Modification:** We experimented with a video-to-video generative model to radically alter environmental attributes (e.g., lighting, textures, and color shifts) while preserving semantic actions.
 
-1. Using the recorded videos, we randomly sampled frames and applied modifications to selected frames based on a predefined probability.
+## Results & Demo
+Despite the low-data regime, the policy demonstrates promising capability.
 
-2. We also experimented with a video editing model to alter aspects of the environment, such as colors and visual attributes, which produced some interesting results.
+[![Watch the Demo Video](https://raw.githubusercontent.com/username/repository/branch/assets/thumbnail.png)](assets/Demo-simple.mp4)
 
-see the video in assets folder
-
-[![Watch the video](https://raw.githubusercontent.com/username/repository/branch/assets/thumbnail.png)](assets/Demo-simple.mp4)
+## Model & Dataset
+| Resource | Link |
+| :--- | :--- |
+| **Model** | [LaLegumbreArtificial/act-real1](https://huggingface.co/LaLegumbreArtificial/act-real1) |
+| **Dataset** | [GuilloCarey/real1](https://huggingface.co/datasets/GuilloCarey/real1) |

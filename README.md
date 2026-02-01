@@ -16,4 +16,4 @@ While generating the data, we realized that recording new samples was a time-con
 
 see the video in assets folder
 
-![Demo video](assets/test_chunk.mp4)
+[![Watch the video](https://raw.githubusercontent.com/username/repository/branch/assets/thumbnail.png)](assets/Demo-simple.mp4)

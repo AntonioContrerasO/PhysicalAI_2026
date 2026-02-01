@@ -16,4 +16,4 @@ While generating the data, we realized that recording new samples was a time-con
 
 see the video in assets folder
 
-[![Demo video](images/image-1.jpeg)](assets/test_chunk.mp4)
+![Demo video](assets/test_chunk.mp4)
